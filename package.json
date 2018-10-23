@@ -1,23 +1,44 @@
 {
   "name": "jc",
-  "version": "1.0.0",
   "description": "JSON Cli",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/t-tonchim/jc.git"
-  },
-  "keywords": [
-    "json",
-    "javascript"
-  ],
+  "version": "0.0.0",
   "author": "t-tonchim",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/t-tonchim/jc/issues"
+  "bin": {
+    "jc": "./bin/run"
   },
-  "homepage": "https://github.com/t-tonchim/jc#readme"
+  "bugs": "https://github.com/t-tonchim/jc/issues",
+  "dependencies": {
+    "@oclif/command": "^1.5.4",
+    "@oclif/config": "^1.8.8",
+    "@oclif/plugin-help": "^2.1.3"
+  },
+  "devDependencies": {
+    "@oclif/test": "^1.2.2",
+    "chai": "^4.2.0",
+    "eslint": "^5.7.0",
+    "eslint-config-oclif": "^3.1.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/src"
+  ],
+  "homepage": "https://github.com/t-tonchim/jc",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "bin": "jc"
+  },
+  "repository": "https://github.com/t-tonchim/jc",
+  "scripts": {
+    "posttest": "eslint .",
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\""
+  }
 }
