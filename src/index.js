@@ -1,10 +1,13 @@
 const {Command, flags} = require('@oclif/command')
 
 class JcCommand extends Command {
+  static args = [
+    {name: 'command'}
+  ]
   async run() {
-    const {flags} = this.parse(JcCommand)
+    const {flags, args} = this.parse(JcCommand)
     const name = flags.name || 'world'
-    this.log(`hello ${name} from ./src/index.js`)
+    this.log(`hello ${command} from ./src/index.js`)
   }
 }
 
