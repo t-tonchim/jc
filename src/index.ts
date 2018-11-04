@@ -1,7 +1,8 @@
 import {Command, flags} from '@oclif/command'
+import * as stringify from 'json-stringify-pretty-compact'
 
 class Jc extends Command {
-  static description = 'describe the command here'
+  static description = 'jc is json cli, provide json manipulation by javascript.'
 
   static flags = {
     // add --version flag to show CLI version
@@ -13,15 +14,24 @@ class Jc extends Command {
     force: flags.boolean({char: 'f'}),
   }
 
-  static args = [{name: 'file'}]
+  static args = [
+    {name: 'command'},
+    {name: 'json'}
+  ]
 
   async run() {
-    const {args, flags} = this.parse(Jc)
+    const {flags,args} = this.parse(Jc)
+    if (!args.json) return
 
-    const name = flags.name || 'world'
-    this.log(`hello ${name} from ./src/index.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
+    const object = JSON.parse(args.json)
+    const entries = Object.entries(object)
+    const keys = Object.keys(object)
+    const values = Object.values(object)
+
+    if (args.command) {
+      this.log(stringify(eval(args.command)))
+    } else {
+      this.log(stringify(object))
     }
   }
 }
